@@ -1,13 +1,11 @@
 # Framework
-torch==1.7.0
-transformers==3.5.1
-pytorch-lightning==1.1.0
-fsspec==2021.4.0 # due to pytorch lightning
+torch
+transformers
+pytorch-lightning
 
 # Utils
-overrides==3.1.0
-dataclasses; python_version<"3.7"
+overrides
 
 # Metrics
-scikit-learn==0.24.1
+scikit-learn
 seqeval
