@@ -5,6 +5,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str)
 parser.add_argument('--tasks', type=str, default='all')
+parser.add_argument('--config', type=str, default='config')
 args = parser.parse_args()
 
 OUTPUT_DIR = 'klue_output'
@@ -13,8 +14,8 @@ VERSION = 'v1.1'
 GPUS = 0
 NUM_WORKERS = 4
 
-def read_config():
-    with open('config.json', 'r') as f:
+def read_config(config_fname):
+    with open(f'{config_fname}.json', 'r') as f:
         config = json.load(f)
     return config
 
@@ -37,12 +38,12 @@ def make_command(model, task, task_config):
 
 
 def main(args):
-    config = read_config()
+    config = read_config(args.config)
 
     if args.tasks.lower() == 'all':
         tasks = ['ynat', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
     else:
-        tasks = [t.lower() for t in tasks.split(',')]
+        tasks = [t.lower() for t in args.tasks.split(',')]
 
     for task in tasks:
         command = make_command(args.model, task, config[task])
