@@ -4,6 +4,7 @@ import json
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str)
+parser.add_argument('--tasks', type=str, default='all')
 args = parser.parse_args()
 
 OUTPUT_DIR = 'klue_output'
@@ -37,7 +38,12 @@ def make_command(model, task, task_config):
 
 def main(args):
     config = read_config()
-    tasks = ['ynat', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
+
+    if args.tasks.lower() == 'all':
+        tasks = ['ynat', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
+    else:
+        tasks = [t.lower() for t in tasks.split(',')]
+
     for task in tasks:
         command = make_command(args.model, task, config[task])
         os.system(command)
