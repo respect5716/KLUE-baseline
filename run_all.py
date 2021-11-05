@@ -1,3 +1,4 @@
+import os
 import json
 
 import argparse
@@ -21,7 +22,7 @@ def make_command(model, task, task_config):
     cmd += f' --output_dir {OUTPUT_DIR}'
     cmd += f' --data_dir {DATA_DIR}/{task}-{VERSION}'
     cmd += f' --gpus {GPUS}'
-    cmd += f' --num {NUM_WORKERS}'
+    cmd += f' --num_workers {NUM_WORKERS}'
     cmd += f' --task {task}'
     cmd += f' --model_name_or_path {model}'
 
@@ -39,8 +40,7 @@ def main(args):
     tasks = ['ynat', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
     for task in tasks:
         command = make_command(args.model, task, config[task])
-        # os.system(command)
-        print(command)
+        os.system(command)
 
 
 if __name__ == '__main__':
