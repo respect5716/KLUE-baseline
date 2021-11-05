@@ -1,7 +1,8 @@
 # Framework
-torch
+torch==1.7.1
 transformers
-pytorch-lightning
+pytorch-lightning==1.2.2
+torchtext==0.8.0
 
 # Utils
 overrides
