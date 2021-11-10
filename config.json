@@ -68,9 +68,9 @@
 
     "wos": {
         "learning_rate": 3e-5,
-        "num_train_epochs": 5,
-        "train_batch_size": 16,
-        "eval_batch_size": 16,
+        "num_train_epochs": 3,
+        "train_batch_size": 8,
+        "eval_batch_size": 8,
         "max_seq_length": 510,
         "gradient_accumulation_steps": 1,
         "warmup_ratio": 0.1,
