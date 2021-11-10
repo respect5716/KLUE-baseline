@@ -6,9 +6,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str)
 parser.add_argument('--tasks', type=str, default='all')
 parser.add_argument('--config', type=str, default='config')
+parser.add_argument('--output_dir', type=str, default='klue_output')
 args = parser.parse_args()
 
-OUTPUT_DIR = 'klue_output'
 DATA_DIR = 'data/klue_benchmark'
 VERSION = 'v1.1'
 GPUS = 0
@@ -19,9 +19,9 @@ def read_config(config_fname):
         config = json.load(f)
     return config
 
-def make_command(model, task, task_config):
+def make_command(model, task, task_config, output_dir):
     cmd = 'python run_klue.py train'
-    cmd += f' --output_dir {OUTPUT_DIR}'
+    cmd += f' --output_dir {output_dir}'
     cmd += f' --data_dir {DATA_DIR}/{task}-{VERSION}'
     cmd += f' --gpus {GPUS}'
     cmd += f' --num_workers {NUM_WORKERS}'
@@ -46,7 +46,7 @@ def main(args):
         tasks = [t.lower() for t in args.tasks.split(',')]
 
     for task in tasks:
-        command = make_command(args.model, task, config[task])
+        command = make_command(args.model, task, config[task], args.output_dir)
         os.system(command)
 
 
