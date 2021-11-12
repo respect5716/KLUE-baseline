@@ -61,11 +61,11 @@
     "klue-mrc": {
         "learning_rate": 3e-5,
         "num_train_epochs": 5,
-        "train_batch_size": 16,
+        "train_batch_size": 8,
+        "eval_batch_size": 8,
         "patience": 100000,
         "max_seq_length": 510,
         "metric_key": "rouge_w"
-
     },
 
     "wos": {
