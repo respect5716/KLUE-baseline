@@ -63,8 +63,7 @@ class MRCTransformer(BaseTransformer):
             if self.is_use_token_type():
                 input_features["token_type_ids"] = batch[2]
 
-            start_logits, end_logits = self(**input_features)
-
+            start_logits, end_logits, hidden_states, attentions = self(**input_features)
         results = []
         feature_indices = batch[3].tolist()
         total_features = self.hparams.data[data_type]["features"]
