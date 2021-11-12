@@ -33,7 +33,9 @@
     "klue-ner": {
         "num_train_epochs": 3,
         "max_seq_length": 510,
-        "metric_key": "character_macro_f1"
+        "metric_key": "character_macro_f1",
+        "train_batch_size": 8,
+        "eval_batch_size": 8
     },
 
     "klue-re": {
