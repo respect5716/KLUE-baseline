@@ -41,7 +41,7 @@ def main(args):
     config = read_config(args.config)
 
     if args.tasks.lower() == 'all':
-        tasks = ['ynat', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
+        tasks = ['ynat', 'klue-sts', 'klue-nli', 'klue-ner', 'klue-re', 'klue-dp', 'klue-mrc', 'wos']
     else:
         tasks = [t.lower() for t in args.tasks.split(',')]
 
