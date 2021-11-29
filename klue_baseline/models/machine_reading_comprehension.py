@@ -66,8 +66,13 @@ class MRCTransformer(BaseTransformer):
             out = self(**input_features)
             if len(out) == 2:
                 start_logits, end_logits = out
+                
+            elif len(out) == 3:
+                start_logits, end_logits, _ = out
+                
             else:
                 start_logits, end_logits, hidden_states, attentions = out
+        
         results = []
         feature_indices = batch[3].tolist()
         total_features = self.hparams.data[data_type]["features"]
